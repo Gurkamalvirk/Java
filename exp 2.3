@@ -1,5 +1,7 @@
+PART A
+
+
 import java.util.*;
-import java.util.stream.*;
 
 class Employee {
     String name;
@@ -18,6 +20,44 @@ class Employee {
     }
 }
 
+public class EmployeeSorting {
+    public static void main(String[] args) {
+        List<Employee> employees = Arrays.asList(
+                new Employee("Alice", 30, 50000),
+                new Employee("Bob", 25, 60000),
+                new Employee("Charlie", 28, 55000),
+                new Employee("David", 35, 70000)
+        );
+
+        // Sort by name
+        employees.sort((e1, e2) -> e1.name.compareTo(e2.name));
+        System.out.println("Sorted by Name:");
+        employees.forEach(System.out::println);
+
+        // Sort by age ascending
+        employees.sort((e1, e2) -> Integer.compare(e1.age, e2.age));
+        System.out.println("\nSorted by Age:");
+        employees.forEach(System.out::println);
+
+        // Sort by salary descending
+        employees.sort((e1, e2) -> Double.compare(e2.salary, e1.salary));
+        System.out.println("\nSorted by Salary (Descending):");
+        employees.forEach(System.out::println);
+    }
+}
+
+
+
+
+
+\-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PAER B
+
+
+import java.util.*;
+import java.util.stream.*;
+
 class Student {
     String name;
     double marks;
@@ -32,6 +72,33 @@ class Student {
         return name + " | " + marks;
     }
 }
+
+public class StudentFilterSort {
+    public static void main(String[] args) {
+        List<Student> students = Arrays.asList(
+                new Student("Alice", 82.5),
+                new Student("Bob", 70.0),
+                new Student("Charlie", 90.0),
+                new Student("David", 78.0)
+        );
+
+        System.out.println("Students with marks > 75, sorted by marks:");
+        students.stream()
+                .filter(s -> s.marks > 75)
+                .sorted(Comparator.comparingDouble(s -> s.marks))
+                .map(s -> s.name)
+                .forEach(System.out::println);
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PART C
+
+
+import java.util.*;
+import java.util.stream.*;
+import java.util.Optional;
 
 class Product {
     String name;
@@ -50,48 +117,8 @@ class Product {
     }
 }
 
-public class Nimbus {
+public class ProductStreamOperations {
     public static void main(String[] args) {
-
-        // ===== Part A: Sorting Employees =====
-        System.out.println("===== Part A: Employee Sorting =====");
-        List<Employee> employees = Arrays.asList(
-                new Employee("Alice", 30, 50000),
-                new Employee("Bob", 25, 60000),
-                new Employee("Charlie", 28, 55000),
-                new Employee("David", 35, 70000)
-        );
-
-        employees.sort((e1, e2) -> e1.name.compareTo(e2.name));
-        System.out.println("Sorted by Name:");
-        employees.forEach(System.out::println);
-
-        employees.sort((e1, e2) -> Integer.compare(e1.age, e2.age));
-        System.out.println("\nSorted by Age:");
-        employees.forEach(System.out::println);
-
-        employees.sort((e1, e2) -> Double.compare(e2.salary, e1.salary));
-        System.out.println("\nSorted by Salary (Descending):");
-        employees.forEach(System.out::println);
-
-        // ===== Part B: Filtering and Sorting Students =====
-        System.out.println("\n===== Part B: Student Filtering & Sorting =====");
-        List<Student> students = Arrays.asList(
-                new Student("Alice", 82.5),
-                new Student("Bob", 70.0),
-                new Student("Charlie", 90.0),
-                new Student("David", 78.0)
-        );
-
-        System.out.println("Students with marks > 75, sorted by marks:");
-        students.stream()
-                .filter(s -> s.marks > 75)
-                .sorted(Comparator.comparingDouble(s -> s.marks))
-                .map(s -> s.name)
-                .forEach(System.out::println);
-
-        // ===== Part C: Stream Operations on Products =====
-        System.out.println("\n===== Part C: Product Stream Operations =====");
         List<Product> products = Arrays.asList(
                 new Product("Laptop", 80000, "Electronics"),
                 new Product("Smartphone", 50000, "Electronics"),
@@ -122,3 +149,4 @@ public class Nimbus {
         System.out.println("\nAverage Price of Products: " + avgPrice);
     }
 }
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
